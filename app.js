@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnPrint = document.getElementById('btn-print');
     const btnReset = document.getElementById('btn-reset');
     const btnAddItem = document.getElementById('btn-add-item');
+    const btnThemeToggle = document.getElementById('theme-toggle');
     const itemsContainer = document.getElementById('items-container');
     
     const bankTrigger = document.getElementById('sender-bank-trigger');
@@ -74,6 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. Load Sender Info from Local Storage & Premium State
         loadSenderInfo();
+
+        // 2.5. Initialize Theme state
+        setupThemeToggle();
 
         // 3. Setup input event listeners for dynamic syncing & auto-saving
         setupSyncListeners();
@@ -201,6 +205,47 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (e) {
             console.error('Error reading localStorage data:', e);
         }
+    }
+
+    // ==========================================
+    // LIGHT/DARK MODE THEME TOGGLE
+    // ==========================================
+
+    function setupThemeToggle() {
+        const themeKey = 'stellar_invoice_theme';
+        const currentTheme = localStorage.getItem(themeKey);
+        
+        const sunIcon = btnThemeToggle.querySelector('.sun-icon');
+        const moonIcon = btnThemeToggle.querySelector('.moon-icon');
+        
+        const setLightMode = () => {
+            document.body.classList.add('light-theme');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+            localStorage.setItem(themeKey, 'light');
+        };
+        
+        const setDarkMode = () => {
+            document.body.classList.remove('light-theme');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+            localStorage.setItem(themeKey, 'dark');
+        };
+        
+        // Initial Theme Load
+        if (currentTheme === 'light') {
+            setLightMode();
+        } else {
+            setDarkMode();
+        }
+        
+        btnThemeToggle.addEventListener('click', () => {
+            if (document.body.classList.contains('light-theme')) {
+                setDarkMode();
+            } else {
+                setLightMode();
+            }
+        });
     }
 
 
