@@ -31,7 +31,7 @@ This tool is hosted live on GitHub Pages. You can access it here:
 
 StellarInvoice is built and maintained as a completely free, open-source tool. If it saves you time, helps your business, or you just want to support the project, feel free to buy me a coffee!
 
-☕ **[Buy Me A Coffee](https://buymeacoffee.com/ritaban)**
+☕ **[Buy Me A Coffee](https://buymeacoffee.com/ritabanm)**
 
 ---
 
